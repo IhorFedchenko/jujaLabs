@@ -8,12 +8,16 @@ Book{name=<name>,countPages=<countPages>,author=<authorBook>}
 Подсказка: для реализации метода  toPrint() необходимо использовать метод toPrint() класса Issue.*/
 
 public class Issue {
-    public String name;
-    public int countPages;
+    private String name;
+    private int countPages;
+
+    public Issue() {
+
+    }
 
     public Issue(String name, int countPages) {
-        this.name = "TestNameIssue";
-        this.countPages = 100;
+        this.name = name;
+        this.countPages = countPages;
     }
 
     public String toPrint() {
@@ -28,12 +32,12 @@ class Book extends Issue {
 
     public Book(String name, int countPages, String authorBook) {
         super(name, countPages);
-        this.name = "TestNameBook";
-        this.authorBook = "TestBookAuthor";
+        this.authorBook = authorBook;
     }
 
     @Override
-    public String toPrint(){
-        return "Book{name="+name+",countPages="+countPages+",author="+authorBook+"}";
+    public String toPrint() {
+        return "Book{" + super.toPrint() + ",author=" + authorBook + "}";
     }
+
 }
