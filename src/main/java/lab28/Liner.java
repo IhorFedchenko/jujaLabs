@@ -32,7 +32,7 @@ public class Liner extends AbstractShip {
 
 
     public float calculatePayment() {
-        return (this.passengers) * DEFAULT_RENTAL;
+        return this.passengers * DEFAULT_RENTAL;
     }
     public float calculatePayment(float rentTax) {
         if (rentTax <= 0){
