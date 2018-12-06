@@ -114,16 +114,18 @@ class OdessaSeaPort implements SeaPortQueue {
 
     public int addShipToEndQueue(AbstractShip ship) {
         if (indexShipInPort < LENGTH_QUEUE_SHIP) {
-            //TODO add Ship
             return indexShipInPort;
         } else return -1;
     }
 
     public int removeShipFromBeginQueue() {
-        return 0;
+        return indexShipInPort;
     }
 
     public String printQueueShip() {
+        if (indexShipInPort < 0){
+            return "QueueEmpty";
+        }
         return null;
     }
 
