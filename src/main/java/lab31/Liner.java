@@ -113,7 +113,7 @@ class OdessaSeaPort implements SeaPortQueue {
     private AbstractShip[] arrayShip = new AbstractShip[LENGTH_QUEUE_SHIP];
 
     public int addShipToEndQueue(AbstractShip ship) {
-        if (indexShipInPort == 2){
+        if (indexShipInPort == LENGTH_QUEUE_SHIP - 1){
             return -1;
         }
         arrayShip[++indexShipInPort] = ship;
@@ -121,7 +121,14 @@ class OdessaSeaPort implements SeaPortQueue {
     }
 
     public int removeShipFromBeginQueue() {
-        return indexShipInPort;
+       if(indexShipInPort == -1){
+           return indexShipInPort;
+       }
+
+        for (int i = 0; i <= indexShipInPort ; i++) {
+//            TODO удаление первого и здвиг индексов
+        }
+        return 1;
     }
 
     public String printQueueShip() {
