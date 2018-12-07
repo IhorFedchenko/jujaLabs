@@ -113,9 +113,11 @@ class OdessaSeaPort implements SeaPortQueue {
     private AbstractShip[] arrayShip = new AbstractShip[LENGTH_QUEUE_SHIP];
 
     public int addShipToEndQueue(AbstractShip ship) {
-        if (indexShipInPort < LENGTH_QUEUE_SHIP) {
-            return indexShipInPort;
-        } else return -1;
+        if (indexShipInPort == 2){
+            return -1;
+        }
+        arrayShip[++indexShipInPort] = ship;
+        return indexShipInPort;
     }
 
     public int removeShipFromBeginQueue() {

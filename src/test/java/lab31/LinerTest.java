@@ -44,4 +44,17 @@ public class LinerTest{
         assertEquals(expectedResultPrintShipQueueAfterRemove, odessaSeaPort.printQueueShip());
 
     }
+    @Test
+    public void check_index_add_ship(){
+
+        OdessaSeaPort odessaSeaPort = new OdessaSeaPort();
+
+        AbstractShip testLiner = new Liner("NameTestLiner",1000, 1000, 1000, 100);
+        AbstractShip testCargo = new Cargo("NameTestCargo", 1000, 1000, 1000,100);
+        AbstractShip testTanker = new Tanker("NameTestTanker", 1000, 1000, 1000, 100);
+
+        assertEquals(0, odessaSeaPort.addShipToEndQueue(testLiner));
+        assertEquals(1, odessaSeaPort.addShipToEndQueue(testCargo));
+        assertEquals(2, odessaSeaPort.addShipToEndQueue(testTanker));
+    }
 }
