@@ -86,10 +86,12 @@ abstract class AbstractShip {
     public abstract float calculatePayment();
 
     public String toPrint() {
-        return "Name=" + name +
+        return "{"+
+                "Name=" + name +
                 "Length=" + length +
                 "Width=" + width +
-                "Displacement=" + displacement;
+                "Displacement=" + displacement +
+                "};";
     }
 
     public String getName() {
@@ -113,6 +115,7 @@ class OdessaSeaPort implements SeaPortQueue {
     private AbstractShip[] arrayShip = new AbstractShip[LENGTH_QUEUE_SHIP];
 
     public int addShipToEndQueue(AbstractShip ship) {
+//       Проверка если очередь полная
         if (indexShipInPort == LENGTH_QUEUE_SHIP - 1){
             return -1;
         }
@@ -121,13 +124,17 @@ class OdessaSeaPort implements SeaPortQueue {
     }
 
     public int removeShipFromBeginQueue() {
+//        Проверка если очередь пустая
        if(indexShipInPort == -1){
            return indexShipInPort;
        }
+        arrayShip[0] = null;
 
-        for (int i = 0; i <= indexShipInPort ; i++) {
-//            TODO удаление первого и здвиг индексов
+        for (int i = 1; i <= indexShipInPort ; i++) {
+            arrayShip[i-1] = arrayShip[i];
         }
+        arrayShip[indexShipInPort] = null;
+        indexShipInPort--;
         return 1;
     }
 
@@ -135,8 +142,12 @@ class OdessaSeaPort implements SeaPortQueue {
         if (indexShipInPort < 0){
             return "QueueEmpty";
         }
-        return null;
+        String result = new String();
+        for (int i = 0; i <arrayShip.length ; i++) {
+            if (arrayShip[i] != null){
+                result+=arrayShip[i].toPrint();
+            }
+        }
+        return result;
     }
-
-
 }
