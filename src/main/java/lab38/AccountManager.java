@@ -2,22 +2,25 @@ package lab38;
 
 public class AccountManager {
     public static boolean transfer(Account[] accounts, int[] delta) {
-        int deltaIndex = delta.length;
-        for (Account account: accounts) {
+        int index = 0;
+        while (index < accounts.length) {
             try {
-                account.change(delta[deltaIndex]);
+                accounts[index].change(delta[index]);
             } catch (TryAgainException e) {
                 continue;
             } catch (BlockAccountException e) {
                 try {
-                    account.change(- delta[deltaIndex]);
+                    for (int index2 = 0; index2 < index; index2++) {
+                        accounts[index2].change(-delta[index2]);
+                    }
                 } catch (TryAgainException e1) {
-                   return false;
-                } catch (BlockAccountException e1) {
-                   return false;
-                }
 
+                } catch (BlockAccountException e1) {
+
+                }
+                return false;
             }
+            index++;
         }
         return true;
     }
